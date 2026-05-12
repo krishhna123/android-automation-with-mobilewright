@@ -1,6 +1,6 @@
 import type { Screen } from '@mobilewright/core';
 
-type user = {
+export type User = {
   countryname: string;
   userName: string;
   gender: string;
@@ -14,7 +14,7 @@ export class RegistrationPage {
   }
 
   async registerUser(
-    user: user,
+    user: User,
     isSuccess: boolean = true,
     errorMessage: string = '',
   ): Promise<void> {
@@ -27,6 +27,14 @@ export class RegistrationPage {
     if (!isSuccess && errorMessage) {
       await this.screen.getByText(errorMessage);
     }
+  }
+
+  async setNameField(name: string): Promise<void> {
+    await this.screen.getByText('Enter name here').fill(name);
+  }
+
+  async clickLetsShopButton(): Promise<void> {
+    await this.screen.getByText("Let's  Shop").tap();
   }
 
   async selectCountry(countryName: string): Promise<void> {
