@@ -3,3 +3,5 @@
 /test-results
 .DS_Store
 window_dump.xml
+
+/test-app
