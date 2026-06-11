@@ -1,4 +1,5 @@
 import type { Screen } from '@mobilewright/core';
+import { expect } from '@mobilewright/test';
 
 export class SignUpPage {
   readonly screen: Screen;
@@ -34,9 +35,16 @@ export class SignUpPage {
     await this.tapSignUpButton();
   }
 
+  async verifySignUpFormDisplayed(): Promise<void> {
+    await expect(this.screen.getByText('SIGN UP')).toBeVisible();
+    await expect(this.screen.getByText('Confirm password')).toBeVisible();
+  }
+
   async verifySignUpSuccess(): Promise<void> {
-    await this.screen.getByText('Signed Up!');
-    await this.screen.getByText('You successfully signed up!');
+    await expect(this.screen.getByText('Signed Up!')).toBeVisible();
+    await expect(
+      this.screen.getByText('You successfully signed up!'),
+    ).toBeVisible();
   }
 
   async dismissAlert(): Promise<void> {

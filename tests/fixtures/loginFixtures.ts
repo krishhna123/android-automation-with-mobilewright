@@ -5,6 +5,7 @@ import { SignUpPage } from '../page-objects/SignUpPage';
 export type LoginTestOptions = {
   loginPage: LoginPage;
   signUpPage: SignUpPage;
+  loginFormPage: LoginPage;
 };
 
 const fixtures = base.extend<LoginTestOptions>({
@@ -13,7 +14,6 @@ const fixtures = base.extend<LoginTestOptions>({
       screen.getByText('Demo app for the appium-boilerplate'),
     ).toBeVisible();
 
-    // Navigate from Home screen to Login screen via bottom nav
     await screen.getByText('Login').tap();
 
     await expect(screen.getByText('Login / Sign up Form')).toBeVisible({
@@ -26,12 +26,11 @@ const fixtures = base.extend<LoginTestOptions>({
     await use(loginPage);
   },
 
-  signUpPage: async ({ screen, device }, use) => {
+  signUpPage: async ({ screen }, use) => {
     await expect(
       screen.getByText('Demo app for the appium-boilerplate'),
     ).toBeVisible();
 
-    // Navigate from Home screen to Login screen via bottom nav
     await screen.getByText('Login').tap();
 
     await expect(screen.getByText('Login / Sign up Form')).toBeVisible({
@@ -41,6 +40,21 @@ const fixtures = base.extend<LoginTestOptions>({
     const signUpPage = new SignUpPage(screen);
     await signUpPage.navigateToSignUpTab();
     await use(signUpPage);
+  },
+
+  loginFormPage: async ({ screen }, use) => {
+    await expect(
+      screen.getByText('Demo app for the appium-boilerplate'),
+    ).toBeVisible();
+
+    await screen.getByText('Login').tap();
+
+    await expect(screen.getByText('Login / Sign up Form')).toBeVisible({
+      timeout: 15000,
+    });
+
+    const loginPage = new LoginPage(screen);
+    await use(loginPage);
   },
 });
 
