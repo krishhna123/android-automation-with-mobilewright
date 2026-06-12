@@ -5,6 +5,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
+    "@types/node": "^25.9.3",
     "prettier": "^3.8.3"
   }
 }
