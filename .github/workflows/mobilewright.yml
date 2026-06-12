@@ -33,6 +33,13 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
           script: |
+            adb wait-for-device
+            adb shell wm dismiss-keyguard
+            adb shell input keyevent 82
+            adb shell svc power stayon true
+            adb shell settings put global window_animation_scale 0.0
+            adb shell settings put global transition_animation_scale 0.0
+            adb shell settings put global animator_duration_scale 0.0
             adb install app.apk
             npx mobilewright test --reporter html
 
