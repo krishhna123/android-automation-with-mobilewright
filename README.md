@@ -16,12 +16,15 @@ This project demonstrates mobile automation testing with the **WDIO Native Demo*
 .
 ├── tests/
 │   ├── fixtures/
-│   │   └── loginFixtures.ts          # Login/signup fixtures
+│   │   ├── loginFixtures.ts          # Login/signup fixtures
+│   │   └── loginFixtures.ts          # More fixtures
 │   ├── page-objects/
 │   │   ├── LoginPage.ts              # Login screen POM
-│   │   └── SignUpPage.ts             # Sign-up screen POM
-│   └── specs/
-│       └── loginTests.test.ts        # Test file
+│   │   ├── SignUpPage.ts             # Sign-up screen POM
+│   │   └── ...                       # Other screen POM
+│   ├── specs/
+│   │   ├── loginTests.test.ts        # Test file
+│   │   └── ...                       # More test files
 ├── test-app/                         # APK directory (gitignored)
 ├── mobilewright.config.ts            # Mobilewright configuration
 └── package.json
@@ -75,6 +78,6 @@ npx mobilewright doctor
 
 ## Future Planned Implementation
 
-- **GitHub Actions for CI/CD**: Automate test execution on pull requests and merges with GitHub Actions workflows
-- **Handling Complex Gestures**: Implement advanced gesture automation including multi-touch, swipe sequences, pinch-to-zoom, and drag-and-drop operations
-- **Handling Hardware Scenarios**: Add support for testing hardware-related features like device rotation, hardware buttons, network conditions, and low battery states
+- [ ] **GitHub Actions for CI/CD**: Automate test execution on pull requests and merges with GitHub Actions workflows
+- [ ] **Handling Complex Gestures**: Implement advanced gesture automation including multi-touch, swipe sequences, pinch-to-zoom, and drag-and-drop operations
+- [ ] **Handling Hardware Scenarios**: Add support for testing hardware-related features like device rotation, hardware buttons, network conditions, and low battery states
