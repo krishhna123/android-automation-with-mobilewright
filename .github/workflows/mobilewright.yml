@@ -31,16 +31,25 @@ jobs:
           arch: x86_64
           profile: pixel_6
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -memory 2048
           script: |
+            echo "=== Device connected ==="
             adb wait-for-device
+            adb devices -l
+            echo "=== Boot status ==="
+            adb shell getprop sys.boot_completed
+            echo "=== Memory ==="
+            adb shell cat /proc/meminfo | head -5
+            echo "=== Unlocking screen ==="
             adb shell wm dismiss-keyguard
-            adb shell input keyevent 82
+            adb shell input keyevent 82 || true
             adb shell svc power stayon true
             adb shell settings put global window_animation_scale 0.0
             adb shell settings put global transition_animation_scale 0.0
             adb shell settings put global animator_duration_scale 0.0
+            echo "=== Installing APK ==="
             adb install app.apk
+            echo "=== Running tests ==="
             npx mobilewright test --reporter html
 
       - uses: actions/upload-artifact@v4
