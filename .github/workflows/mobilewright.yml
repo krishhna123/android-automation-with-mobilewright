@@ -1,4 +1,5 @@
 # https://mobilewright.dev/docs/getting-started/ci
+# https://mobilewright.dev/docs/guides/docker
 name: Mobilewright Tests
 on:
   push:
@@ -12,12 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - run: npm ci
-
       - name: Download WDIO Native Demo APK
         run: |
           curl -sSfL -o app.apk \
@@ -27,19 +22,18 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
-          target: default
+          target: google_apis
           arch: x86_64
           profile: pixel_6
-          disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -memory 3072
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           script: |
-            adb wait-for-device
-            adb shell svc power stayon true
-            adb shell settings put global window_animation_scale 0.0
-            adb shell settings put global transition_animation_scale 0.0
-            adb shell settings put global animator_duration_scale 0.0
             adb install -r app.apk
-            npx mobilewright test --reporter html
+            docker build -t mobilewright-tests .
+            docker run --rm \
+              --add-host=host.docker.internal:host-gateway \
+              -v "$PWD:/home/mwuser" \
+              mobilewright-tests \
+              npx mobilewright test --reporter html
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
