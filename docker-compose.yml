@@ -1,6 +1,0 @@
-services:
-  test:
-    build: .
-    volumes:
-      - .:/home/mwuser
-    command: npx mobilewright test

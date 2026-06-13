@@ -1,5 +1,4 @@
 # https://mobilewright.dev/docs/getting-started/ci
-# https://mobilewright.dev/docs/guides/docker
 name: Mobilewright Tests
 on:
   push:
@@ -12,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
 
       - name: Download WDIO Native Demo APK
         run: |
@@ -27,13 +30,11 @@ jobs:
           profile: pixel_6
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           script: |
+            adb devices
             adb install -r app.apk
-            docker build -t mobilewright-tests .
-            docker run --rm \
-              --add-host=host.docker.internal:host-gateway \
-              -v "$PWD:/home/mwuser" \
-              mobilewright-tests \
-              npx mobilewright test --reporter html
+            npm ci
+            npx mobilewright doctor
+            npx mobilewright test --reporter html
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
