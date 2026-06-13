@@ -78,6 +78,6 @@ npx mobilewright doctor
 
 ## Future Planned Implementation
 
-- [ ] **GitHub Actions for CI/CD**: Automate test execution on pull requests and merges with GitHub Actions workflows
+- [x] **GitHub Actions for CI/CD**: Automate test execution on pull requests and merges with GitHub Actions workflows
 - [ ] **Handling Complex Gestures**: Implement advanced gesture automation including multi-touch, swipe sequences, pinch-to-zoom, and drag-and-drop operations
 - [ ] **Handling Hardware Scenarios**: Add support for testing hardware-related features like device rotation, hardware buttons, network conditions, and low battery states
