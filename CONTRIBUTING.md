@@ -62,31 +62,10 @@ npx prettier --write .
 - Test files import `fixtures` and `expect` from the fixture files, never directly from `@mobilewright/test`
 - Use semantic locators — `getByText`, `getByRole`, `getByTestId` — over raw coordinates or XPath
 
-## Pull Request Process
-
-1. **Title** — Use a simple, descriptive title (e.g. _"Add swipe tests for the forms screen"_)
-
-2. **Description** — Include:
-   - What was changed and why
-   - How to test the changes
-   - Screenshots or screen recordings for UI-related changes
-   - Reference any related issues (e.g. `Closes #12`)
-
-3. **Before submitting**:
-   - Ensure your Android device/emulator is booted
-   - Run the relevant tests and confirm they pass
-   - Run `npx prettier --write .` to format your code
-
 ## Project Structure
 
-```
-mobilewright.config.ts              # WDIO Native Demo config
-tests/
-├── fixtures/
-│   └── loginFixtures.ts            # Login/signup fixtures
-├── page-objects/
-│   ├── LoginPage.ts                # Login screen POM
-│   └── SignUpPage.ts               # Sign-up screen POM
-└── specs/
-    └── loginTests.test.ts          # Test file
-```
+See the [README](README.md#project-structure) for the project layout.
+
+## Pull Requests
+
+This repo uses a pull request template — when you open a PR, it will be pre-populated with the required sections.
