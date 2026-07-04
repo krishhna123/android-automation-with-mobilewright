@@ -36,7 +36,6 @@ jobs:
           profile: pixel_6
           ram-size: 4096M
           cores: 2
-          disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -no-metrics
           script: |
             adb devices
