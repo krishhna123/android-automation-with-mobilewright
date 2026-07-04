@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "npx mobilewright test"
+  },
   "dependencies": {
     "@mobilewright/test": "^0.0.48",
     "mobilewright": "^0.0.48"
