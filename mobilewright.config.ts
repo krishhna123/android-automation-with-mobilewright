@@ -5,6 +5,9 @@ export default defineConfig({
   deviceName: process.env.CI ? /./ : /Pixel 10 Pro XL/,
   bundleId: 'com.wdiodemoapp',
   timeout: 120_000,
+  expect: {
+    timeout: 10_000,
+  },
   retries: process.env.CI ? 0 : 1,
   workers: process.env.CI ? 1 : 2,
 });
