@@ -3,12 +3,12 @@
     "test": "npx mobilewright test"
   },
   "dependencies": {
-    "@mobilewright/test": "^0.0.50",
-    "mobilewright": "^0.0.50"
+    "@mobilewright/test": "^0.0.53",
+    "mobilewright": "^0.0.53"
   },
   "devDependencies": {
-    "@faker-js/faker": "^10.5.0",
-    "@types/node": "^26.1.1",
-    "prettier": "^3.9.5"
+    "@faker-js/faker": "^10.6.0",
+    "@types/node": "^26.2.0",
+    "prettier": "^3.9.6"
   }
 }
